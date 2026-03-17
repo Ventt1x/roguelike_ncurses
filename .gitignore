@@ -1,0 +1,12 @@
+# Compiled binaries
+*.o
+*.out
+*.exe
+
+# Editor backups
+*~
+*.swp
+
+# Build folders
+build/
+

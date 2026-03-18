@@ -12,6 +12,8 @@ typedef struct player{
     char sign;
     unsigned fire_cooldown;
     unsigned MAX_fire_cooldown;
+    int move_cooldown;
+    int MAX_move_cooldown;
 
 } Player_t;
 

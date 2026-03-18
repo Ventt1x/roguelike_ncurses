@@ -21,8 +21,8 @@ void bullet_collision(Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Bullet_t
     return;
 }
 
-void bullet_hit(Bullet_t **head, Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Player_t *player, Enemy_t **enemy){
-    (*enemy)->hp-=player->damage;
+void bullet_hit(Bullet_t **head, Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Player_t *player, Enemy_t *enemy){
+    enemy->hp-=player->damage;
     if(*prev==NULL){
         *head=next;
         free(*dead);
@@ -37,7 +37,7 @@ void bullet_hit(Bullet_t **head, Bullet_t **dead, Bullet_t **prev, Bullet_t *nex
 
 
 
-void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_t **enemy_head){
+void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_t **enemy_head, int tick){
     if(*head==NULL) return;
 
     Bullet_t *curr=*head;
@@ -46,8 +46,12 @@ void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_
 
     while(curr!=NULL){
         int gone=0;
-        curr->x+=curr->dx;
-        curr->y+=curr->dy;
+
+        if(tick%8==0){
+            curr->x+=curr->dx;
+            curr->y+=curr->dy;
+        }
+
         temp=curr;
         curr=curr->next;
         if(temp->x<=0 || temp->x>= W_MIN-1|| temp->y<= 0 || temp->y>=L_MIN-1){
@@ -57,7 +61,7 @@ void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_
             Enemy_t *enemy_curr=*enemy_head;
             while(enemy_curr!=NULL){
                 if(temp->y==enemy_curr->y && temp->x==enemy_curr->x){
-                    bullet_hit(head, &temp, &prev, curr ,player, &enemy_curr);
+                    bullet_hit(head, &temp, &prev, curr ,player, enemy_curr);
                     gone=1;
                     break;
                 }

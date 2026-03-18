@@ -19,7 +19,7 @@ typedef struct enemy{
 } Enemy_t;
 
 Enemy_t *enemy_init();
-Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN]);
+Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick);
 Enemy_t *enemy_dead(Enemy_t *dead, Enemy_t *prev, Enemy_t **head);
 void enemy_attack(Enemy_t *enemy);
 

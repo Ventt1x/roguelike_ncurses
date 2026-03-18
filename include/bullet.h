@@ -21,7 +21,7 @@
     } Bullet_t;
 
     void bullet_collision(Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Bullet_t **head);
-    void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_t **enemy);
+    void bullet_update(Bullet_t **head, char room[][W_MIN], Player_t *player, Enemy_t **enemy, int tick);
     void bullet_shoot(Bullet_t **head, Player_t *player, int dir);
-    void bullet_hit(Bullet_t **head, Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Player_t *player, Enemy_t **enemy);
+    void bullet_hit(Bullet_t **head, Bullet_t **dead, Bullet_t **prev, Bullet_t *next, Player_t *player, Enemy_t *enemy);
 #endif

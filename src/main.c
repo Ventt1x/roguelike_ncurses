@@ -24,18 +24,18 @@ int main(){
     room_init(room);
     player_init(&player);
     enemy=enemy_init();
-    int fire_cooldown=0;
     int tick=0;
 
     while(1){
         tick++;
         if(player.fire_cooldown>0)player.fire_cooldown--;
         clear();
+
+        bullet_update(&bullet, room, &player, &enemy, tick);
+        enemy=enemy_update(enemy, &player, room, tick);
         all_render(room, &player, &bullet, &enemy);
-        if(tick%1==0) {
-            bullet_update(&bullet, room, &player, &enemy);
-        }
-        if(tick%10==0) enemy=enemy_update(enemy, &player, room);
+
+
         refresh();
         int input = ERR;
         int last_input = ERR;

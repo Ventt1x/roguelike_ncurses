@@ -4,9 +4,10 @@
 #include "player.h"
 #include "bullet.h"
 #include "enemy.h"
+#include "loot.h"
 
 
-void all_render(char (*room)[W_MIN], Player_t *player, Bullet_t **bullet, Enemy_t **enemy){
+void all_render(char (*room)[W_MIN], Player_t *player, Bullet_t **bullet, Enemy_t **enemy, Loot_t **loot){
     for(int i=0; i<L_MIN; i++){
         for (int j = 0; j < W_MIN; j++)
         {
@@ -39,7 +40,18 @@ void all_render(char (*room)[W_MIN], Player_t *player, Bullet_t **bullet, Enemy_
                         break;
                     }
                     curr=curr->next;
-            } 
+                } 
+            }if(found==0){
+                Loot_t *curr=*loot;
+                while(curr!=NULL){
+                    if(curr->x==j && curr->y==i){
+                        printw(" %c", curr->sign);
+                        found=1;
+                        break;
+                    }
+                    curr=curr->next;
+                }
+
             } if(!found){
                 if(i==0 || i==L_MIN-1){
                     printw(" %c", room[i][j]); 

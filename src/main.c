@@ -7,6 +7,7 @@
 #include "bullet.h"
 #include "render.h"
 #include "enemy.h"
+#include "loot.h"
 
 
 int main(){
@@ -14,6 +15,7 @@ int main(){
     Player_t player;
     Bullet_t *bullet=NULL;
     Enemy_t *enemy=NULL;
+    Loot_t *loot=NULL;
 
     initscr();
     timeout(TICKRATE);  
@@ -33,8 +35,8 @@ int main(){
         erase();
 
         bullet_update(&bullet, room, &player, &enemy, tick);
-        enemy=enemy_update(enemy, &player, room, tick);
-        all_render(room, &player, &bullet, &enemy);
+        enemy=enemy_update(enemy, &player, room, tick, &loot);
+        all_render(room, &player, &bullet, &enemy, &loot);
 
 
         refresh();
@@ -48,6 +50,7 @@ int main(){
             player.fire_cooldown=player.MAX_fire_cooldown;
         }else{
             player_move(&player, last_input, room);
+            loot=loot_collect(loot, player.x, player.y, &player);
         }
     }
 

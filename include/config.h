@@ -11,3 +11,6 @@
 
 //all
 #define TICKRATE 20
+
+//loot
+#define LOOT_VALUE 30

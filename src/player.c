@@ -13,6 +13,7 @@ void player_init(Player_t *player){
     player->MAX_fire_cooldown=40;
     player->move_cooldown = 0;
     player->MAX_move_cooldown = 3; // tweak this
+    player->hit_timer = 0;
 }
 
 void player_attack(Player_t *player, int input, char room[][W_MIN], Bullet_t **bullet){
@@ -66,3 +67,7 @@ void player_move(Player_t *player, char input, char room[][W_MIN]){
 
 }
 
+void player_dead(Player_t *player){
+    endwin();
+    exit(0);
+}

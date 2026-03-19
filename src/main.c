@@ -29,7 +29,8 @@ int main(){
     while(1){
         tick++;
         if(player.fire_cooldown>0)player.fire_cooldown--;
-        clear();
+        if(player.hit_timer>0) player.hit_timer--;
+        erase();
 
         bullet_update(&bullet, room, &player, &enemy, tick);
         enemy=enemy_update(enemy, &player, room, tick);

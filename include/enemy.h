@@ -15,13 +15,15 @@ typedef struct enemy{
     int damage;
     char sign;
     int move_tick;
+    int hit_cooldown;
+    int MAX_hit_cooldown;
     EnemyType type;
 } Enemy_t;
 
 Enemy_t *enemy_init();
 Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick);
 Enemy_t *enemy_dead(Enemy_t *dead, Enemy_t *prev, Enemy_t **head);
-void enemy_attack(Enemy_t *enemy);
+void enemy_attack(Enemy_t *enemy, Player_t *player);
 
 
 #endif

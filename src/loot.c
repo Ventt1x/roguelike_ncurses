@@ -15,7 +15,10 @@ Loot_t *loot_drop(Loot_t *head, int x, int y){
 Loot_t *loot_collect(Loot_t *head, int x, int y, Player_t *player){ 
     if(head==NULL) return NULL;
     if(head->x==x && head->y==y){
-        player->hp+=head->value;
+        while(player->hp<HP_START && head->value>0){
+            player->hp++;
+            head->value--;
+        }   
         Loot_t *temp=head->next;
         free(head);
         head=NULL;
@@ -28,7 +31,10 @@ Loot_t *loot_collect(Loot_t *head, int x, int y, Player_t *player){
     if(curr->next==NULL){
         return head;
     }
-    player->hp+=curr->next->value;
+    while(player->hp<HP_START && curr->next->value>0){
+        player->hp++;
+        curr->next->value--;
+    }
     Loot_t *temp2=curr->next;
     curr->next=curr->next->next;
     free(temp2);

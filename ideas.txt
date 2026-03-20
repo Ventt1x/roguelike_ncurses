@@ -1,10 +1,10 @@
 brief invulnerability for player after being hit 
 knockback after player hits enemy and vice versa
 splitting enemy into proper files for each enemy type
-adding loot
 adding deathscreen
 adding new enemies
 adding procedural room generation
 adding first items
 item_drop droppping dropping on the same tile 
 or to adjacent tiles
+add collision to enemies (player can run through them)

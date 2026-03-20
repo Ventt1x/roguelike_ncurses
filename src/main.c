@@ -8,6 +8,7 @@
 #include "render.h"
 #include "enemy.h"
 #include "loot.h"
+#include "enemies/drunk_peasant.h"
 
 
 int main(){
@@ -25,7 +26,7 @@ int main(){
 
     room_init(room);
     player_init(&player);
-    enemy=enemy_init();
+    enemy=drunk_peasant_spawn(enemy);
     int tick=0;
 
     while(1){

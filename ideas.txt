@@ -8,3 +8,16 @@ adding first items
 item_drop droppping dropping on the same tile 
 or to adjacent tiles
 add collision to enemies (player can run through them)
+allow enemies to run and shoot in same turn?
+
+
+inconsistencies:
+calling dead checks from bullet_hit or in main
+tickrates or cooldown
+order of args in functions
+player and enemies sharing some function, some not?
+functions with unecessary arguments (bullet_hit)
+using config.h for some but not all?
+no struct for room
+maybe one bullet_remove  for bullet_hit and bullet_hit_player
+fix cornering for archer type

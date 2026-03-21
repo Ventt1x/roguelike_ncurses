@@ -15,11 +15,12 @@ typedef struct player{
     int move_cooldown;
     int MAX_move_cooldown;
     int hit_timer;
+    void (*do_attack)(struct player *, int, char[][W_MIN], Bullet_t **bullet);
 
 } Player_t;
 
 void player_init(Player_t *player);
-void player_attack(Player_t *player, int input, char room[][W_MIN],  Bullet_t **bullet);
+void player_shoot(Player_t *player, int input, char room[][W_MIN],  Bullet_t **head);
 void player_move(Player_t *player, char input, char room[][W_MIN]);
 void player_dead(Player_t *player);
 

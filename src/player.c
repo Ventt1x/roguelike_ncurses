@@ -3,22 +3,35 @@
 #include "player.h"
 #include "bullet.h"
 
-void player_init(Player_t *player){
-    player->x=W_MIN/2;
-    player->y=L_MIN-2;
-    player->hp=HP_START;
-    player->damage=DMG_START;
-    player->sign='@';
-    player->fire_cooldown=0;
-    player->MAX_fire_cooldown=40;
-    player->move_cooldown = 0;
-    player->MAX_move_cooldown = 3; // tweak this
-    player->hit_timer = 0;
-}
 
-void player_attack(Player_t *player, int input, char room[][W_MIN], Bullet_t **bullet){
-    //int dir=getch();
-    bullet_shoot(bullet, player, input);
+
+void player_shoot(Player_t *player, int input, char room[][W_MIN], Bullet_t **head){
+    int dx;
+    int dy;
+    char sign='*';
+    switch(input){
+        case KEY_UP:{
+            dy=(-1)*B_VELO;
+            dx=0;
+            break;
+        }
+        case KEY_DOWN:{
+            dy=B_VELO;
+            dx=0;
+            break;
+        }
+        case KEY_LEFT:{
+            dy=0;
+            dx=(-1)*B_VELO;
+            break;
+        }
+        case KEY_RIGHT:{
+            dy=0;
+            dx=B_VELO;
+            break;
+        }
+    }
+    bullet_spawn(head, player->x, player->y, dx, dy, player->damage, sign, 0);
 }
 
 
@@ -70,4 +83,19 @@ void player_move(Player_t *player, char input, char room[][W_MIN]){
 void player_dead(Player_t *player){
     endwin();
     exit(0);
+}
+
+
+void player_init(Player_t *player){
+    player->x=W_MIN/2;
+    player->y=L_MIN-2;
+    player->hp=HP_START;
+    player->damage=DMG_START;
+    player->sign='@';
+    player->fire_cooldown=0;
+    player->MAX_fire_cooldown=40;
+    player->move_cooldown = 0;
+    player->MAX_move_cooldown = 3; // tweak this
+    player->hit_timer = 0;
+    player->do_attack=player_shoot;
 }

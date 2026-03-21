@@ -22,7 +22,7 @@ Enemy_t *enemy_dead(Enemy_t *dead, Enemy_t *prev, Enemy_t **head, Loot_t **loot_
     return next;
 }
 
-Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick, Loot_t **loot_head){
+Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick, Loot_t **loot_head, Bullet_t **bullets){
     if(head==NULL) return NULL;
     Enemy_t *curr=head;
     Enemy_t *prev=NULL;
@@ -37,7 +37,7 @@ Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int t
             continue;
         } else{
             if(curr->move_tick<=0) curr->do_move(curr, player, room);
-            if(curr->hit_cooldown<=0) curr->attack(curr, player, NULL);
+            if(curr->hit_cooldown<=0) curr->attack(curr, player, bullets);
         }
         curr=curr->next;
     }

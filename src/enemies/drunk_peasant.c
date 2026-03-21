@@ -33,33 +33,33 @@ void drunk_peasant_move(Enemy_t *curr, Player_t *player, char room[][W_MIN]){
     curr->move_tick=curr->MAX_move_tick;
     if(r==0){ //staggering
         int r2 = rand()%3;
-        if(r2==0 && room[curr->y+1][curr->x]!='#') curr->y++;
-        else if(r2==1 && room[curr->y-1][curr->x]!='#') curr->y--;
-        else if(r2==2 && room[curr->y][curr->x+1]!='#') curr->x++;
-        else if(room[curr->y][curr->x-1]!='#')curr->x--;
+        if(r2==0 && room[curr->y+1][curr->x]!='#' && (player->y!=curr->y+1)) curr->y++;
+        else if(r2==1 && room[curr->y-1][curr->x]!='#'&& (player->y!=curr->y-1)) curr->y--;
+        else if(r2==2 && room[curr->y][curr->x+1]!='#'&& (player->x!=curr->x+1)) curr->x++;
+        else if(room[curr->y][curr->x-1]!='#'&& (player->x!=curr->x-1))curr->x--;
     }   
     else if(curr->y == player->y){ //normal moving towards player
-        if (((curr->x)-player->x)<0){
+        if (((curr->x)-player->x)<1){
             curr->x++;
-        } else if(((curr->x)-player->x)>0){
+        } else if(((curr->x)-player->x)>1){
             curr->x--;
         }
     } else if(curr->x == player->x){
-        if (((curr->y)-player->y)<0){
+        if (((curr->y)-player->y)<1){
             curr->y++;
-        } else if(((curr->y)-player->y)>0){
+        } else if(((curr->y)-player->y)>1){
             curr->y--;
         }
     }  else if(r3==0){
-        if (((curr->y)-player->y)<0){
+        if (((curr->y)-player->y)<1){
             curr->y++;
-        } else if(((curr->y)-player->y)>0){
+        } else if(((curr->y)-player->y)>1){
             curr->y--;
         }
     } else{
-        if (((curr->x)-player->x)<0){
+        if (((curr->x)-player->x)<1){
             curr->x++;
-        } else if(((curr->x)-player->x)>0){
+        } else if(((curr->x)-player->x)>1){
             curr->x--;
         }
     }

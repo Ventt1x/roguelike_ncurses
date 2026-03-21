@@ -29,7 +29,7 @@ typedef struct enemy{
     //void (*spawn) (struct enemy*);
 } Enemy_t;
 
-Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick, Loot_t **loot_head);
+Enemy_t *enemy_update(Enemy_t *head, Player_t *player, char room[][W_MIN], int tick, Loot_t **loot_head, Bullet_t **bullets);
 Enemy_t *enemy_dead(Enemy_t *dead, Enemy_t *prev, Enemy_t **head, Loot_t **loot_head);
 
 

@@ -1,6 +1,6 @@
 # Roguelike ncurses
 This is my try on a ASCII terminal roguelike in C with the help of ncurses. 
-With loads of epic content such as being able to fight one enemy in the only room. 
+With loads of epic content such as being able to fight one of the two enemies in the only room. 
 ## Build and Run
 
 Clone the repo:
